@@ -1,0 +1,248 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+div #login {
+  text-decoration: none;
+  color: black;
+}
+
+ /*round corners table*/
+/*table {*/
+/*  border-collapse: separate;*/
+/*  border-spacing: 0;*/
+/*  min-width: 350px;*/
+/*}*/
+
+/*table tr th,*/
+/*table tr td {*/
+/*  border-right: 1px solid #000000;*/
+/*  border-bottom: 1px solid #000000;*/
+/*  padding: 5px;*/
+/*}*/
+/*table tr th:first-child,*/
+/*table tr td:first-child {*/
+/*  border-left: 1px solid #000000;*/
+/*}*/
+/*table tr th {*/
+/*  background: #000000;*/
+/*  border-top: 1px solid #000000;*/
+/*  text-align: left;*/
+/*}*/
+
+ /*top-left border-radius */
+/*table tr:first-child th:first-child {*/
+/*  border-top-left-radius: 20px;*/
+/*}*/
+
+/*!* top-right border-radius *!*/
+/*table tr:first-child th:last-child {*/
+/*  border-top-right-radius: 20px;*/
+/*}*/
+
+/* bottom-left border-radius */
+/*table tr:last-child td:first-child {*/
+/*  border-bottom-left-radius: 20px;*/
+/*}*/
+
+/*!* bottom-right border-radius *!*/
+/*table tr:last-child td:last-child {*/
+/*  border-bottom-right-radius: 20px;*/
+/*}*/
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: rgb(43, 62, 238);
+  color: #ffffff;
+  text-align: left;
+}
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid rgb(43, 62, 238);
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #efefef;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid rgb(43, 62, 238);
+}
+/*.styled-table tbody tr.active-row {*/
+/*  font-weight: bold;*/
+/*  color: rgb(43, 62, 238);*/
+/*}*/
+
+
+/* modal form */
+.quote {
+  margin: 40px;
+  margin-left: 800px;
+}
+
+.QuoteModal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(18, 18, 19, 0.82);
+  transition: opacity 300ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.QuoteModal:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.login_popup_modal {
+  position: relative;
+  margin: 300px auto;
+  padding: 20px;
+  background: rgb(43, 62, 238);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 10px 10px #353744;
+  width: 500px;
+}
+.login_popup_modal .quoteclose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  color: black;
+}
+
+.registo_popup_modal {
+  color: white;
+  position: relative;
+  margin: 150px auto;
+  padding: 20px;
+  background: rgb(28, 48, 236);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 10px 10px #353744;
+  width: 500px;
+}
+.registo_popup_modal .quoteclose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  color: #fdfdfd;
+}
+
+.new_pitch_popup_modal {
+  color: white;
+  position: relative;
+  margin: 150px auto;
+  padding: 20px;
+  background: rgb(28, 48, 236);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 10px 10px #353744;
+  width: 500px;
+}
+.new_pitch_popup_modal .quoteclose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  color: #fdfdfd;
+}
+
+.feedback_popup_modal {
+  color: white;
+  position: relative;
+  margin: 150px auto;
+  padding: 20px;
+  background: rgb(28, 48, 236);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 10px 10px #353744;
+  width: 500px;
+}
+.feedback_popup_modal .quoteclose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  color: black;
+}
+
+.feedback_view_popup_modal {
+  color: white;
+  position: relative;
+  margin: 150px auto;
+  padding: 20px;
+  background: rgb(28, 48, 236);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 10px 10px #353744;
+  width: 500px;
+}
+.feedback_view_popup_modal .quoteclose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  color: black;
+}
+
+/* tooltip */
+div.tip {
+  position: relative;
+}
+div.tip span {
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: 125px;
+  width: 250px;
+  padding: 5px;
+  z-index: 100;
+  background: rgb(28, 48, 236);
+  color: #fff;
+  -moz-border-radius: 5px; /* this works only in camino/firefox */
+  -webkit-border-radius: 5px; /* this is just for Safari */
+}
+div.tip span:before{
+  content:'';
+  display:block;
+  width:0;
+  height:0;
+  position:absolute;
+
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  /*border-right:8px solid black;*/
+  border-right:8px solid rgb(28, 48, 236);
+  left:-8px;
+  top:7px;
+}
+div:hover.tip span {
+  display: block;
+}
