@@ -7,5 +7,7 @@ Where entrepreneurs and investors can share contacts
 # Features of application
 * Register/login;
 * CRUD;
+* Entity framework;
+* LINQ queries;
 * Videos update and visualization;
 
