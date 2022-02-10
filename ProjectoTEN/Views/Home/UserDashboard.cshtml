@@ -90,6 +90,7 @@
                         <h3 class="text-center">Add new pitch</h3>
                     </div>
                     <div>
+                        
                         <form id="new_pitch_form" novalidate class="needs-validation">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="row">
@@ -116,8 +117,8 @@
                                 <button id="btnSubmit" type="button" class="btn btn-primary" onclick="addPitch()">Add new</button>
                             </div>
                         </form>
-                                
-                            <script type="text/javascript">
+
+                        <script type="text/javascript">
                                 function addPitch() {
                                     var data = $("#new_pitch_form").serialize();
                                     $.ajax({
