@@ -8,11 +8,11 @@
 <div class="container">
     <div class="wrapper">
         
-        <h1>Bem-vindo empreendedor @ViewBag.Nome</h1>
+        <h1>Welcome entreprenur @ViewBag.Nome</h1>
         
         <div>
             <a href="#new_pitch" title="">
-                <button type="submit" class="btn btn-outline-primary btn-sm">Adicionar novo pitch</button>
+                <button type="submit" class="btn btn-outline-primary btn-sm">Add new pitch</button>
             </a>
             <br/>
             @* TODO -> fix saving edit *@
@@ -23,14 +23,14 @@
         <br/>
         
         <div>
-            <h4>Tem @HomeController.countAllUserVideos(ViewBag.id) vídeo pitchs na sua conta</h4>
+            <h4>You have @HomeController.countAllUserVideos(ViewBag.id) vídeo pitchs in your account</h4>
             <br/>
 
             @* <table class="table table-dark table-hover table-striped roundedCorners"> *@
             <table class="styled-table">
                 <thead>
                 <tr class="text-center">
-                    <th>Título</th>
+                    <th>Title</th>
                     <th>Link</th>
                     <th>Edit</th>
                     <th>Tag</th>
@@ -49,8 +49,8 @@
                                 <a id="video_link" href="@item.Link">@item.Link</a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-primary btn-sm" >Editar</button>
-                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="deleteVideos(@item.Id)">Eliminar</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm" >Edit</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="deleteVideos(@item.Id)">Delete</button>
                             </td>
                             <td>
                                 @item.Tags
@@ -62,7 +62,7 @@
                         
                         <script>
                         function deleteVideos(id) {
-                            if (confirm('Tem a certeza que quer eliminar?')) {
+                            if (confirm('Are you sure you want to delete?')) {
                                 $.ajax({
                                     type: 'POST',
                                     url: '/Home/DeleteVideo',
@@ -87,14 +87,14 @@
                 <div class="new_pitch_popup_modal">
                     <div>
                         <a href="#" title="Close" class="quoteclose">X</a>
-                        <h3 class="text-center">Adicionar novo pitch</h3>
+                        <h3 class="text-center">Add new pitch</h3>
                     </div>
                     <div>
                         <form id="new_pitch_form" novalidate class="needs-validation">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="row">
-                                <label>Titulo</label>
-                                <input type="text" placeholder="Titulo" name="Titulo" required>
+                                <label>Title</label>
+                                <input type="text" placeholder="Title" name="Titulo" required>
                             </div>
                             <div class="row">
                                 <label>Link</label>
@@ -105,15 +105,15 @@
                                 <input type="text" placeholder="Tag" name="Tags" required>
                             </div>
                             <div class="row">
-                                <label>Descrição</label>
-                                <input type="text" placeholder="Descrição" name="Descricao" required>
+                                <label>Description</label>
+                                <input type="text" placeholder="Description" name="Descricao" required>
                             </div>
                             <div class="row">
                                 <input type="hidden" placeholder="UtilizadorId" name="UtilizadorId" value="@ViewBag.Id" required>
                             </div>
                             <br/>
                             <div class="text-center">
-                                <button id="btnSubmit" type="button" class="btn btn-primary" onclick="addPitch()">Adicionar</button>
+                                <button id="btnSubmit" type="button" class="btn btn-primary" onclick="addPitch()">Add new</button>
                             </div>
                         </form>
                                 
@@ -132,7 +132,7 @@
                                             location.reload()
                                         },
                                         error: function () {
-                                            alert('Por favor preencha todos os campos');
+                                            alert('Please fill out every fields');
                                             console.log('Failed ');
                                         }
                                     })

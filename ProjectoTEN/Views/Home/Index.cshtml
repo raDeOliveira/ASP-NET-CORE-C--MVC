@@ -6,26 +6,15 @@
 
 <div class="container">
     <div class="wrapper">
-        <h1 class="text-center">Welcome to GoldFish</h1>
+        <br/><br/>
+        <h1 class="text-center">Welcome to ASP NET CORE MVC</h1>
         <br><br>
-        
+
         <div class="text-center">
-            <p>
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-            </p>
-            <p>
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-                WRITE SOME TEXT
-            </p>
+            
+            <img src="images/asp.net_.png"/>
         </div>
-        
+
         @* login *@
         <div id="login" class="QuoteModal">
             <div class="login_popup_modal">
@@ -34,7 +23,7 @@
                     <h3 class="text-center">Login</h3>
                 </div>
                 <div>
-                    <form  method="post" asp-controller="home" asp-action="login">
+                    <form method="post" asp-controller="home" asp-action="login">
                         <div class="row">
                             <input id="email" type="text" placeholder="Email" name="email" required>
                         </div>
@@ -43,7 +32,7 @@
                         </div>
                         <br/>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary" >Login</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </form>
                 </div>
@@ -56,14 +45,14 @@
             <div class="registo_popup_modal">
                 <div>
                     <a href="" title="Close" class="quoteclose">X</a>
-                    <h3 class="text-center">Registo</h3>
+                    <h3 class="text-center">Register</h3>
                 </div>
                 <div>
                     <form id="register_form" novalidate class="needs-validation">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row">
-                            <label>Nome</label>
-                            <input type="text" placeholder="Nome" name="nome" required>
+                            <label>Name</label>
+                            <input type="text" placeholder="Name" name="nome" required>
                         </div>
                         <div class="row">
                             <label>Email</label>
@@ -74,32 +63,32 @@
                             <input type="password" placeholder="Password" name="password" required>
                         </div>
                         <div class="row">
-                            <label>Tipo</label>
+                            <label>Type</label>
                             <select asp-for="Tipo" class="form-control">
                                 <option value="">Please select</option>
-                                <option value="5">Empreendedor</option>
-                                <option value="4">Investidor</option>
+                                <option value="5">Entreprenur</option>
+                                <option value="4">Investor</option>
                             </select>
                         </div>
                         <div class="row">
-                            <label>Descrição</label>
-                            <input type="text" placeholder="Descrição" name="descricao" required>
+                            <label>Description</label>
+                            <input type="text" placeholder="Description" name="descricao" required>
                         </div>
                         <div class="row">
                             <label>Linkedin</label>
                             <input type="text" placeholder="Linkedin" name="linkedin" required>
                         </div>
                         <div class="row">
-                            <label>Telefone</label>
-                            <input type="text" placeholder="Telefone" name="telefone" required>
+                            <label>Phone</label>
+                            <input type="text" placeholder="Phone" name="telefone" required>
                         </div>
                         <br/>
                         <div class="text-center">
-                            <button id="btnSubmit" type="button" class="btn btn-primary" onclick="register()">Registar</button>
+                            <button id="btnSubmit" type="button" class="btn btn-primary" onclick="register()">Register</button>
                         </div>
                     </form>
-                            
-                        <script type="text/javascript">
+
+                    <script type="text/javascript">
                             function register() {
                                 var data = $("#register_form").serialize();
                                 $.ajax({
@@ -121,8 +110,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
 </div>
 

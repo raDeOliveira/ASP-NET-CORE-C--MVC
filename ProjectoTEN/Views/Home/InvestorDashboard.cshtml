@@ -7,7 +7,7 @@
 
 <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     
-    <h1>Bem-vindo investidor @ViewBag.Nome</h1>
+    <h1>Welcome investor @ViewBag.Nome</h1>
     
     <a asp-controller="Utilizadores" asp-action="InvestorEdit" asp-route-id="@ViewBag.id">
         <button type="submit" class="btn btn-outline-primary btn-sm">Edit Profile</button>
@@ -15,12 +15,12 @@
     <br/>
     <br/>
 
-    <div><b>Existem @HomeController.countAllVideos() vídeos disponíveis.</b>
+    <div><b>There are @HomeController.countAllVideos() available videos.</b>
             <br/>
-            Pesquisar por filtro:
+            Filter search:
             @using (Html.BeginForm()) {
-                @Html.DropDownListFor(t => t.Tags, new SelectList(ViewBag.Tags) as SelectList,"Todos os videos",null)
-                <button type="submit" class="btn btn-primary btn-sm">pesquisar</button>
+                @Html.DropDownListFor(t => t.Tags, new SelectList(ViewBag.Tags) as SelectList,"All videos",null)
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
             }
     </div>
 
@@ -28,11 +28,11 @@
         <table class="styled-table">
             <thead>
             <tr>
-                <th class="text-center">Título</th>
+                <th class="text-center">Title</th>
                 <th class="text-center">Link</th>
-                <th class="text-center">Informacões</th>
-                <th class="text-center">Sobre Empreendedor</th>
-                <th class="text-center">Deixar feedback</th>
+                <th class="text-center">Informations</th>
+                <th class="text-center">About entrepreneur</th>
+                <th class="text-center">Leave feedback</th>
             </tr>
             </thead>
             <tbody>
@@ -62,13 +62,13 @@
                         </td>
                         <td>
                             <br/>
-                            Nome: @HomeController.getEntrepenurInfo(o.Titulo)[0]
+                            Name: @HomeController.getEntrepenurInfo(o.Titulo)[0]
+                            @* <br/> *@
+                            @* Tipo: @HomeController.getEntrepenurInfo(o.Titulo)[1] *@
                             <br/>
-                            Tipo: @HomeController.getEntrepenurInfo(o.Titulo)[1]
+                            Description: @HomeController.getEntrepenurInfo(o.Titulo)[2]
                             <br/>
-                            Descrição: @HomeController.getEntrepenurInfo(o.Titulo)[2]
-                            <br/>
-                            Telefone: @HomeController.getEntrepenurInfo(o.Titulo)[3]
+                            Phone: @HomeController.getEntrepenurInfo(o.Titulo)[3]
                         </td>
                         <td>
                             <a style="margin: 50px" href="#feedback" class="btn btn-outline-primary">Feedback</a>
@@ -90,7 +90,7 @@
                                             </div>
                                             <br/>
                                             <div class="container">
-                                                <p id="Classificacao">Classificação</p>
+                                                <p id="Classificacao">Classification</p>
                                                 <label class="radio-inline">
                                                     <input type="radio" name="Classificacao" value="1" required> 1
                                                 </label>

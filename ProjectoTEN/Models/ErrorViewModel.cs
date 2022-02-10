@@ -1,3 +1,4 @@
+#nullable enable
 namespace ProjectoTEN.Models
 {
     public class ErrorViewModel
