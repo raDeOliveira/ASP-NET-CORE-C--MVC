@@ -1,0 +1,148 @@
+﻿@using ProjectoTEN.Controllers
+@model ProjectoTEN.Models.LinkVideo
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    
+    <h1>Welcome investor @ViewBag.Nome</h1>
+    
+    <a asp-controller="Utilizadores" asp-action="InvestorEdit" asp-route-id="@ViewBag.id">
+        <button type="submit" class="btn btn-outline-primary btn-sm">Edit Profile</button>
+    </a>
+    <br/>
+    <br/>
+
+    <div><b>There are @HomeController.countAllVideos() available videos.</b>
+            <br/>
+            Filter search:
+            @using (Html.BeginForm()) {
+                @Html.DropDownListFor(t => t.Tags, new SelectList(ViewBag.Tags) as SelectList,"All videos",null)
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            }
+    </div>
+
+    <div>
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th class="text-center">Title</th>
+                <th class="text-center">Link</th>
+                <th class="text-center">Informations</th>
+                <th class="text-center">About entrepreneur</th>
+                <th class="text-center">Leave feedback</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                    foreach (var o in ViewBag.FullVideos) {
+                    <tr class="text-center">
+                        <td>
+                            <br/>
+                            @o.Titulo
+                        </td>
+
+                        <td>
+                            <iframe width="200" height="150" src="@o.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </td>
+
+                        <td>
+                            <p>
+                                <div class="tip"><a href="mailto:@HomeController.getUserVideoMail(o.Titulo)">
+                                    <img style="margin: 15px" src="~/images/email.png" height="30" width="35" alt=""/>
+                                </a><span>@HomeController.getUserVideoMail(o.Titulo)</span></div>
+                            </p>
+                            <p>
+                                <div class="tip"><a href="@HomeController.getUserVideoLinkedIn(o.Titulo)">
+                                    <img style="margin: 15px" src="~/images/linkedin.PNG" height="30" width="35" alt=""/>
+                                </a><span>@HomeController.getUserVideoLinkedIn(o.Titulo)</span></div>
+                            </p>
+                        </td>
+                        <td>
+                            <br/>
+                            Name: @HomeController.getEntrepenurInfo(o.Titulo)[0]
+                            @* <br/> *@
+                            @* Tipo: @HomeController.getEntrepenurInfo(o.Titulo)[1] *@
+                            <br/>
+                            Description: @HomeController.getEntrepenurInfo(o.Titulo)[2]
+                            <br/>
+                            Phone: @HomeController.getEntrepenurInfo(o.Titulo)[3]
+                        </td>
+                        <td>
+                            <a style="margin: 50px" href="#feedback" class="btn btn-outline-primary">Feedback</a>
+
+                            <div id="feedback" class="QuoteModal">
+                                <div class="feedback_popup_modal">
+                                    <div>
+                                        <a href="#" title="Close" class="quoteclose">X</a>
+                                        <h3 class="text-center">Feedback</h3>
+                                    </div>
+                                    <div>
+                                        <form id="add_feedback_form" novalidate class="needs-validation">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="row">
+                                                <input type="hidden" placeholder="VideoId" name="VideoId" value="@o.Id" required>
+                                            </div>
+                                            <div class="row">
+                                                <textarea name="Critica" id="Critica" ></textarea>
+                                            </div>
+                                            <br/>
+                                            <div class="container">
+                                                <p id="Classificacao">Classification</p>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="Classificacao" value="1" required> 1
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="Classificacao" value="2" required> 2
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="Classificacao" value="3" required> 3
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="Classificacao" value="4" required> 4
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="Classificacao" value="5" required> 5
+                                                </label>
+                                            </div>
+                                            <br/>
+                                            <div class="text-center">
+                                                <button id="btnSubmit" type="button" class="btn btn-primary" onclick="addFeedback()">Save</button>
+                                            </div>
+                                        </form>
+
+                                        <script type="text/javascript">
+                                    function addFeedback() {
+                                        var data = $("#add_feedback_form").serialize();
+                                        if (confirm('Salvar?')) {
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '/Home/AddFeedback',
+                                                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                                                data: data,
+                                                success: function () {
+                                                    window.location.href = "#";
+                                                    location.reload()
+                                                }
+                                            });
+                                        }
+                                    }
+                                </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+
+    </div>
+    <div>
+        @* <a asp-controller="Utilizadores" asp-action="Edit" asp-route-id="@ViewBag.id">Edit</a> | *@
+        @* <a asp-action="Index">Back to List</a> *@
+    </div>
+</div>

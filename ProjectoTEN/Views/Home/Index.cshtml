@@ -1,0 +1,120 @@
+﻿@model ProjectoTEN.Models.Utilizador
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="wrapper">
+        <br/><br/>
+        <h1 class="text-center">Welcome to ASP NET CORE MVC</h1>
+        <br><br>
+
+        <div class="text-center">
+            
+            <img src="images/asp.net_.png"/>
+        </div>
+
+        @* login *@
+        <div id="login" class="QuoteModal">
+            <div class="login_popup_modal">
+                <div>
+                    <a href="" title="Close" class="quoteclose">X</a>
+                    <h3 class="text-center">Login</h3>
+                </div>
+                <div>
+                    <form method="post" asp-controller="home" asp-action="login">
+                        <div class="row">
+                            <input id="email" type="text" placeholder="Email" name="email" required>
+                        </div>
+                        <div class="row">
+                            <input id="password" type="password" placeholder="Password" name="password" required>
+                        </div>
+                        <br/>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        @* register *@
+        <div id="registo" class="QuoteModal">
+            <div class="registo_popup_modal">
+                <div>
+                    <a href="" title="Close" class="quoteclose">X</a>
+                    <h3 class="text-center">Register</h3>
+                </div>
+                <div>
+                    <form id="register_form" novalidate class="needs-validation">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <label>Name</label>
+                            <input type="text" placeholder="Name" name="nome" required>
+                        </div>
+                        <div class="row">
+                            <label>Email</label>
+                            <input type="email" placeholder="Email" name="email" required>
+                        </div>
+                        <div class="row">
+                            <label>Password</label>
+                            <input type="password" placeholder="Password" name="password" required>
+                        </div>
+                        <div class="row">
+                            <label>Type</label>
+                            <select asp-for="Tipo" class="form-control">
+                                <option value="">Please select</option>
+                                <option value="5">Entreprenur</option>
+                                <option value="4">Investor</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label>Description</label>
+                            <input type="text" placeholder="Description" name="descricao" required>
+                        </div>
+                        <div class="row">
+                            <label>Linkedin</label>
+                            <input type="text" placeholder="Linkedin" name="linkedin" required>
+                        </div>
+                        <div class="row">
+                            <label>Phone</label>
+                            <input type="text" placeholder="Phone" name="telefone" required>
+                        </div>
+                        <br/>
+                        <div class="text-center">
+                            <button id="btnSubmit" type="button" class="btn btn-primary" onclick="register()">Register</button>
+                        </div>
+                    </form>
+
+                    <script type="text/javascript">
+                            function register() {
+                                var data = $("#register_form").serialize();
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/Home/Register',
+                                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                                    data: data,
+                                    success: function (result) {
+                                        alert('User successfully added');
+                                        window.location.href = "../Home/Index";
+                                    },
+                                    error: function () {
+                                        alert('Por favor preencha todos os campos');
+                                        console.log('Failed ');
+                                    }
+                                })
+                            }
+                        </script>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

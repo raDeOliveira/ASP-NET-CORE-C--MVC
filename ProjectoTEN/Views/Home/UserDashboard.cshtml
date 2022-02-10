@@ -1,0 +1,154 @@
+﻿@using ProjectoTEN.Controllers
+@model ProjectoTEN.Models.LinkVideo
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="container">
+    <div class="wrapper">
+        
+        <h1>Welcome entreprenur @ViewBag.Nome</h1>
+        
+        <div>
+            <a href="#new_pitch" title="">
+                <button type="submit" class="btn btn-outline-primary btn-sm">Add new pitch</button>
+            </a>
+            <br/>
+            @* TODO -> fix saving edit *@
+            <a asp-controller="Utilizadores" asp-action="Edit" asp-route-id="@ViewBag.id">
+                <button type="submit" class="btn btn-outline-primary btn-sm">Edit Profile</button>
+            </a>
+        </div>
+        <br/>
+        
+        <div>
+            <h4>You have @HomeController.countAllUserVideos(ViewBag.id) vídeo pitchs in your account</h4>
+            <br/>
+
+            @* <table class="table table-dark table-hover table-striped roundedCorners"> *@
+            <table class="styled-table">
+                <thead>
+                <tr class="text-center">
+                    <th>Title</th>
+                    <th>Link</th>
+                    <th>Edit</th>
+                    <th>Tag</th>
+                    <th>Feddback</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @{
+                    foreach (var item in ViewBag.infoVideos) {
+                        <tr class="text-center">
+                            <td>
+                                @item.Titulo
+                            </td>
+                            <td>
+                                <a id="video_link" href="@item.Link">@item.Link</a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary btn-sm" >Edit</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="deleteVideos(@item.Id)">Delete</button>
+                            </td>
+                            <td>
+                                @item.Tags
+                            </td>
+                            <td>
+                                <div class="tip">View tooltip<span>@HomeController.ViewFeedback(item.Link)</span></div>
+                            </td>
+                        </tr>
+                        
+                        <script>
+                        function deleteVideos(id) {
+                            if (confirm('Are you sure you want to delete?')) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/Home/DeleteVideo',
+                                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                                    data: {
+                                        id
+                                    },
+                                    success: function () {
+                                        location.reload()
+                                    }
+                                });
+                            }
+                        }
+                        </script>
+                    }
+                }
+                </tbody>
+            </table>
+
+            @* add new pitch *@
+            <div id="new_pitch" class="QuoteModal">
+                <div class="new_pitch_popup_modal">
+                    <div>
+                        <a href="#" title="Close" class="quoteclose">X</a>
+                        <h3 class="text-center">Add new pitch</h3>
+                    </div>
+                    <div>
+                        <form id="new_pitch_form" novalidate class="needs-validation">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <label>Title</label>
+                                <input type="text" placeholder="Title" name="Titulo" required>
+                            </div>
+                            <div class="row">
+                                <label>Link</label>
+                                <input type="text" placeholder="Link" name="Link" required>
+                            </div>
+                            <div class="row">
+                                <label>Tag</label>
+                                <input type="text" placeholder="Tag" name="Tags" required>
+                            </div>
+                            <div class="row">
+                                <label>Description</label>
+                                <input type="text" placeholder="Description" name="Descricao" required>
+                            </div>
+                            <div class="row">
+                                <input type="hidden" placeholder="UtilizadorId" name="UtilizadorId" value="@ViewBag.Id" required>
+                            </div>
+                            <br/>
+                            <div class="text-center">
+                                <button id="btnSubmit" type="button" class="btn btn-primary" onclick="addPitch()">Add new</button>
+                            </div>
+                        </form>
+
+                        <script type="text/javascript">
+                                function addPitch() {
+                                    var data = $("#new_pitch_form").serialize();
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '/Home/AddNewPitch',
+                                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                                        data: data,
+                                        success: function (result) {
+                                            alert('Pitch inserido');
+                                            // window.location.href = "../Home/UserDashboard";
+                                            window.location.href = "#";
+                                            location.reload()
+                                        },
+                                        error: function () {
+                                            alert('Please fill out every fields');
+                                            console.log('Failed ');
+                                        }
+                                    })
+                                }
+                            </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+        @* <a asp asp-controller="Utilizadores" asp-action="Edit" asp-route-id="@ViewBag.UserId">Edit</a> | *@
+        @* <a asp-action="Index">Back to List</a> *@
+    </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
