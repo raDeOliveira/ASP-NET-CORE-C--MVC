@@ -2,7 +2,7 @@
 ASP-NET-CORE-C#-MVC-Entity-Framework
 
 # Plataform like shark tank ideia
-Where entrepenurs and investors can share contacts
+Where entrepreneurs and investors can share contacts
 
 # Features of application
 * Register/login;
