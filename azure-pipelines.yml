@@ -45,10 +45,10 @@ steps:
     SourceFolder: '$(build.sourcesDirectory)'
     Contents: '**/bin/$(BuildConfiguration)/**src/*.testsettings'
     TargetFolder: '$(build.artifactStagingDirectory)'
-  condition: succeededOrFailded()
+  condition: succeededOrFailed()
   
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
     PathtoPublish: '$(build.artifactStagingDirectory)'
-  condition: succeededOrFailded()
+  condition: succeededOrFailed()
