@@ -32,3 +32,12 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: PublishSymbols@1
+  displayName: 'Publish symbols path'
+  inputs:
+    SearchPattern: '**/bin/**/*.pdb'
+  continueOnError: true
+  
+- task: CopyFiles@1
+  displayName: 'Copy'
